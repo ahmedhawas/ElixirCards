@@ -17,4 +17,16 @@ defmodule Cards do
   def contains?(deck, card) do
     Enum.member?(deck, card)
   end
+
+  def deal(deck, hand_size) do
+    Enum.split(deck, hand_size)
+  end
+
+  def save(deck, filename) do
+    # using erlang to write to the file system
+    binary = :erlang.term_to_binary(deck)
+    File.write(filename, binary)
+  end
 end
+
+# pattern matching is elixir's replacement for variable assignment
